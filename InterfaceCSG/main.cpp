@@ -1,12 +1,12 @@
-//#include <QApplication>
+#include <QApplication>
 //#include "mainwindow.h"
 
-#include "vector.h"
+#include "matrix33f.h"
 
 int main(int argc, char *argv[])
 {
-    /*QApplication a(argc, argv);
-	MainWindow w;
+    QApplication a(argc, argv);
+    /*MainWindow w;
     w.show();*/
     Vector<float, 2> A = Vector<float, 2>(0.0f);
     Vector<float, 2> B = Vector<float, 2>(0.0f);
@@ -16,14 +16,32 @@ int main(int argc, char *argv[])
     B[1] = 4.0f;
     Vector<float, 2> C = Vector<float, 2>(B);
 
+    Vec3f D = Vec3f(0.0f, 5.0f, 2.0f);
+    Vec3f E = Vec3f(D);
+    E[0] = 1.0f;
+    Vec3f F = Vec3f(E);
+    Vec2f translation = Vec2f(C);
+    Matrix33f M = Matrix33f();
+    Matrix33f T = Matrix33f(D, E, F);
+    Vec3f G = M.applyTranslation(T, translation);
+
+
     std::cout << "A :" << A << std::endl;
     std::cout << "B :" << B << std::endl;
     std::cout << "C :" << C << std::endl;
+    std::cout << "D :" << D << std::endl;
+    std::cout << "E :" << E << std::endl;
+    std::cout << "F :" << F << std::endl;
+    std::cout << "T : {" << T[0] << ", " << T[1] << ", "
+              << T[2] << "}" << std::endl;
+    std::cout << "M : {" << M[0] << ", " << M[1] << ", "
+              << M[2] << "}" << std::endl;
+    std::cout << "G :" << G << std::endl;
     std::cout << "A + B : " << (A + B) << std::endl;
     std::cout << "A == B : " << (A == B) << std::endl;
     std::cout << "A != B : " << (A != B) << std::endl;
     std::cout << "B == C : " << (B == C) << std::endl;
+    std::cout << "D + E : " << (D + E) << std::endl;
 
-
-    //return a.exec();
+    return a.exec();
 }

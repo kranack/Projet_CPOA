@@ -16,12 +16,12 @@ public:
     const Vec3f &operator [](int val) const;
     Vec3f& operator [](int val);
     void inverse();
-    Matrix33f setTranslation(const Vec2f& vec);
-    Vec3f applyTranslation(const Vec2f &matrix);
+    void setTranslation(const Vec2f& vec);
+    Vec3f applyTranslation(const Matrix33f &matrix, const Vec2f &vec);
     void setRotation(Vec3f& vec);
-    Matrix33f& applyRotation();
+    Vec3f applyRotation();
     void setHomothetie(Vec3f& vec);
-    Matrix33f& applyHomothetie();
+    Vec3f applyHomothetie();
 };
 
 #endif // MATRIX33F_H

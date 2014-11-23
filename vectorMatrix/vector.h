@@ -22,9 +22,10 @@ public:
 
     T operator *(Vector& vec) const;
     T operator /(Vector& vec) const;
-    Vector& operator *=(T val);
-    Vector& operator /=(T val);
-    Vector& operator =(const Vector& v);
+    Vector &operator *=(T val);
+    Vector &operator *=(Vector v);
+    Vector &operator /=(T val);
+    Vector &operator =(const Vector& v);
 
     void zero();
     T* data() { return this->m_data; }
@@ -123,6 +124,18 @@ Vector<T,N>& Vector<T,N>::operator *=(T val)
     for (int i=0; i<N; ++i)
     {
         this->m_data[i] *= val;
+    }
+
+    return *this;
+}
+
+
+template<typename T, int N>
+Vector<T,N> &Vector<T,N>::operator *=(Vector<T,N> v)
+{
+    for (int i=0; i<N; ++i)
+    {
+        this->m_data[i] *= v[i];
     }
 
     return *this;

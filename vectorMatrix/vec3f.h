@@ -13,7 +13,7 @@ public:
     Vec3f(V3F& vec);
     float operator *(const Vec3f& vec) const;
     Vec3f operator ^(const Vec3f& vec) const;
-    Vec3f& operator =(const Vec3f& vec);
+    //Vec3f& operator =(const Vec3f& vec);
 };
 
 #endif // VEC3F_H

@@ -5,6 +5,11 @@ Vec2f::Vec2f():
 {
 }
 
+Vec2f::Vec2f(V2F &vec) :
+    V2F(vec)
+{
+}
+
 float Vec2f::operator *(const Vec2f& vec) const
 {
     float res = 0.0f;
