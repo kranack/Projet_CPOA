@@ -11,7 +11,8 @@ public:
     Vec3f();
     Vec3f(float val1, float val2, float val3);
     Vec3f(V3F& vec);
-    float operator *(const Vec3f& vec) const;
+    Vec3f operator *(const Vec3f& vec) const;
+    float operator *(const float val) const;
     Vec3f operator ^(const Vec3f& vec) const;
     //Vec3f& operator =(const Vec3f& vec);
 };

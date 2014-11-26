@@ -15,29 +15,24 @@ int main(int argc, char *argv[])
     B[0] = 2.0f;
     B[1] = 4.0f;
     Vector<float, 2> C = Vector<float, 2>(B);
-
     Vec3f D = Vec3f(0.0f, 5.0f, 2.0f);
     Vec3f E = Vec3f(D);
     E[0] = 1.0f;
     Vec3f F = Vec3f(E);
     Vec2f translation = Vec2f(C);
     Matrix33f T = Matrix33f(D, E, F);
-    T.applyTranslation(translation);
+    Matrix33f M = T;
+    Matrix33f R = T.applyTranslation(translation);
+    R.applyRotation(30.0f);
 
 
-    std::cout << "A :" << A << std::endl;
-    std::cout << "B :" << B << std::endl;
     std::cout << "C :" << C << std::endl;
-    std::cout << "D :" << D << std::endl;
-    std::cout << "E :" << E << std::endl;
-    std::cout << "F :" << F << std::endl;
     std::cout << "T : {" << T[0] << ", " << T[1] << ", "
               << T[2] << "}" << std::endl;
-    std::cout << "A + B : " << (A + B) << std::endl;
-    std::cout << "A == B : " << (A == B) << std::endl;
-    std::cout << "A != B : " << (A != B) << std::endl;
-    std::cout << "B == C : " << (B == C) << std::endl;
-    std::cout << "D + E : " << (D + E) << std::endl;
+    std::cout << "M : {" << M[0] << ", " << M[1] << ", "
+              << M[2] << "}" << std::endl;
+    std::cout << "R : {" << R[0] << ", " << R[1] << ", "
+              << R[2] << "}" << std::endl;
 
     return a.exec();
 }

@@ -1,6 +1,8 @@
 #ifndef MATRIX33F_H
 #define MATRIX33F_H
 
+#include "math.h"
+
 #include "vec2f.h"
 #include "vec3f.h"
 
@@ -15,13 +17,17 @@ public:
     Matrix33f(const Vec3f& vec1, const Vec3f& vec2, const Vec3f& vec3);
     const Vec3f &operator [](int val) const;
     Vec3f& operator [](int val);
+    Matrix33f &operator *=(const Matrix33f& matrix);
     void inverse();
+
     void setTranslation(const Vec2f& vec);
     Matrix33f &applyTranslation(const Vec2f &vec);
-    void setRotation(Vec3f& vec);
-    Vec3f applyRotation();
-    void setHomothetie(Vec3f& vec);
-    Vec3f applyHomothetie();
+
+    void setRotation(const float angle);
+    Matrix33f &applyRotation(const float angle);
+
+    void setHomothetie(const Vec2f &vec);
+    Matrix33f &applyHomothetie(const Vec2f &vec);
 };
 
 #endif // MATRIX33F_H

@@ -22,13 +22,24 @@ Vec3f::Vec3f(V3F &vec)
 }
 
 
-float Vec3f::operator *(const Vec3f& vec) const
+Vec3f Vec3f::operator *(const Vec3f& vec) const
+{
+    Vec3f res = Vec3f();
+    for (int i=0; i<3; ++i)
+    {
+        res[i] = m_data[i] * vec[i];
+    }
+    return res;
+}
+
+float Vec3f::operator *(const float val) const
 {
     float res = 0.0f;
     for (int i=0; i<3; ++i)
     {
-        res += m_data[i] * vec[i];
+        res += m_data[i] * val;
     }
+
     return res;
 }
 

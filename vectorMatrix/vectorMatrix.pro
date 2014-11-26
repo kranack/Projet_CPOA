@@ -17,7 +17,8 @@ HEADERS += vecttempl.h vectCalc.h \
     matrix33f.h \
     vec2f.h \
     vec3f.h \
-    vector.h
+    vector.h \
+    image.h
 
 DESTDIR = ../lib
 

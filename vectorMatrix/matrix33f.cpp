@@ -22,6 +22,15 @@ Vec3f &Matrix33f::operator [](int val)
     return m_matrix[val];
 }
 
+Matrix33f &Matrix33f::operator *=(const Matrix33f &matrix)
+{
+    m_matrix[0] *= matrix[0];
+    m_matrix[1] *= matrix[1];
+    m_matrix[2] *= matrix[2];
+
+    return *this;
+}
+
 const Vec3f &Matrix33f::operator [](int val) const
 {
     assert(val < m_size);
@@ -39,25 +48,48 @@ Matrix33f &Matrix33f::applyTranslation(const Vec2f &vec)
 {
     Matrix33f matrix = Matrix33f();
     matrix.setTranslation(vec);
-    /*vector[0] = m_matrix[0][0] * matrix[0][0] +
-            m_matrix[0][1] * matrix[0][1] +
-            m_matrix[0][2] * matrix[0][2];
-    vector[1] = m_matrix[1][0] * matrix[1][0] +
-            m_matrix[1][1] * matrix[1][1] +
-            m_matrix[1][2] * matrix[1][2];
-    vector[2] = m_matrix[2][0] * matrix[2][0] +
-            m_matrix[2][1] * matrix[2][1] +
-            m_matrix[2][2] * matrix[2][2];*/
-   /* m_matrix[0] = m_matrix[0][0] * matrix[0][0] +
-                m_matrix[1][0] * matrix[0][1] +
-                m_matrix[2][0] * matrix[0][2];
-        vector[1] = m_matrix[0][1] * matrix[1][0] +
-                m_matrix[1][1] * matrix[1][1] +
-                m_matrix[2][1] * matrix[1][2];
-        vector[2] = m_matrix[0][2] * matrix[2][0] +
-                m_matrix[1][2] * matrix[2][1] +
-                m_matrix[2][2] * matrix[2][2];
-    */
+    std::cout << "matrix : {" << matrix[0] << ", " << matrix[1]
+              << ", " << matrix[2] << "}" << std::endl;
+    m_matrix[0] *= matrix[0];
+    m_matrix[1] *= matrix[1];
+    m_matrix[2] += m_matrix[2] * matrix[2];
+    m_matrix[2][2] = 1.0f;
     return *this;
+}
+
+void Matrix33f::setRotation(const float angle)
+{
+    float _cos = cosf(angle*M_PI/180);
+    float _sin = sinf(angle*M_PI/180);
+    m_matrix[0] = Vec3f(_cos, -_sin, 0.0f);
+    m_matrix[1] = Vec3f(_sin, _cos, 0.0f);
+    m_matrix[2] = Vec3f(0.0f, 0.0f, 1.0f);
+}
+
+Matrix33f &Matrix33f::applyRotation(const float angle)
+{
+    Matrix33f matrix = Matrix33f();
+    matrix.setRotation(angle);
+    std::cout << "matrix : {" << matrix[0] << ", " << matrix[1]
+              << ", " << matrix[2] << "}" << std::endl;
+    m_matrix[0] *= matrix[0];
+    m_matrix[1] *= matrix[1];
+    m_matrix[2] *= matrix[2];
+
+    return *this;
+}
+
+void Matrix33f::setHomothetie(const Vec2f &vec)
+{
+    m_matrix[0] = Vec3f(vec[0], 0.0f, 0.0f);
+    m_matrix[1] = Vec3f(0.0f, vec[1], 0.0f);
+    m_matrix[2] = Vec3f(0.0f, 0.0f, 1.0f);
+}
+
+Matrix33f &Matrix33f::applyHomothetie(const Vec2f &vec)
+{
+    Matrix33f matrix = Matrix33f();
+    matrix.setHomothetie(vec);
+
 }
 
