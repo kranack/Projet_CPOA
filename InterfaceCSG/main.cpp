@@ -21,9 +21,8 @@ int main(int argc, char *argv[])
     E[0] = 1.0f;
     Vec3f F = Vec3f(E);
     Vec2f translation = Vec2f(C);
-    Matrix33f M = Matrix33f();
     Matrix33f T = Matrix33f(D, E, F);
-    Vec3f G = M.applyTranslation(T, translation);
+    T.applyTranslation(translation);
 
 
     std::cout << "A :" << A << std::endl;
@@ -34,9 +33,6 @@ int main(int argc, char *argv[])
     std::cout << "F :" << F << std::endl;
     std::cout << "T : {" << T[0] << ", " << T[1] << ", "
               << T[2] << "}" << std::endl;
-    std::cout << "M : {" << M[0] << ", " << M[1] << ", "
-              << M[2] << "}" << std::endl;
-    std::cout << "G :" << G << std::endl;
     std::cout << "A + B : " << (A + B) << std::endl;
     std::cout << "A == B : " << (A == B) << std::endl;
     std::cout << "A != B : " << (A != B) << std::endl;

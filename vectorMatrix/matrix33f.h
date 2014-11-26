@@ -17,7 +17,7 @@ public:
     Vec3f& operator [](int val);
     void inverse();
     void setTranslation(const Vec2f& vec);
-    Vec3f applyTranslation(const Matrix33f &matrix, const Vec2f &vec);
+    Matrix33f &applyTranslation(const Vec2f &vec);
     void setRotation(Vec3f& vec);
     Vec3f applyRotation();
     void setHomothetie(Vec3f& vec);

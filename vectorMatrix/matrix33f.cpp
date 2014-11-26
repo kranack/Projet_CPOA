@@ -35,10 +35,10 @@ void Matrix33f::setTranslation(const Vec2f &vec)
     m_matrix[2] = Vec3f(vec[0], vec[1], 1.0f);
 }
 
-Vec3f Matrix33f::applyTranslation(const Matrix33f &matrix, const Vec2f &vec)
+Matrix33f &Matrix33f::applyTranslation(const Vec2f &vec)
 {
-    this->setTranslation(vec);
-    Vec3f vector = Vec3f();
+    Matrix33f matrix = Matrix33f();
+    matrix.setTranslation(vec);
     /*vector[0] = m_matrix[0][0] * matrix[0][0] +
             m_matrix[0][1] * matrix[0][1] +
             m_matrix[0][2] * matrix[0][2];
@@ -48,7 +48,7 @@ Vec3f Matrix33f::applyTranslation(const Matrix33f &matrix, const Vec2f &vec)
     vector[2] = m_matrix[2][0] * matrix[2][0] +
             m_matrix[2][1] * matrix[2][1] +
             m_matrix[2][2] * matrix[2][2];*/
-    vector[0] = m_matrix[0][0] * matrix[0][0] +
+   /* m_matrix[0] = m_matrix[0][0] * matrix[0][0] +
                 m_matrix[1][0] * matrix[0][1] +
                 m_matrix[2][0] * matrix[0][2];
         vector[1] = m_matrix[0][1] * matrix[1][0] +
@@ -57,7 +57,7 @@ Vec3f Matrix33f::applyTranslation(const Matrix33f &matrix, const Vec2f &vec)
         vector[2] = m_matrix[0][2] * matrix[2][0] +
                 m_matrix[1][2] * matrix[2][1] +
                 m_matrix[2][2] * matrix[2][2];
-
-    return vector;
+    */
+    return *this;
 }
 
