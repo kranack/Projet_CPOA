@@ -91,5 +91,29 @@ Matrix33f &Matrix33f::applyHomothetie(const Vec2f &vec)
     Matrix33f matrix = Matrix33f();
     matrix.setHomothetie(vec);
 
+    return *this;
 }
+
+Matrix33f Matrix33f::operator *(const Vec3f &vec)
+{
+    Matrix33f matrix = Matrix33f();
+
+    matrix[0] = m_matrix[0] * vec;
+    matrix[1] = m_matrix[1] * vec;
+    matrix[2] = m_matrix[2] * vec;
+
+    return matrix;
+}
+
+Vec2f Matrix33f::applyTransformation(const Vec2f &vec)
+{
+    Vec2f res = Vec2f();
+
+    res[0] = vec[0] * m_matrix[0][0] + vec[0] * m_matrix[1][0] + m_matrix[2][0];
+    res[1] = vec[1] * m_matrix[0][1] + vec[1] * m_matrix[1][1] + m_matrix[2][1];
+
+    return res;
+}
+
+
 

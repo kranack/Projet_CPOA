@@ -28,6 +28,9 @@ public:
 
     void setHomothetie(const Vec2f &vec);
     Matrix33f &applyHomothetie(const Vec2f &vec);
+
+    Matrix33f operator *(const Vec3f &vec);
+    Vec2f applyTransformation(const Vec2f &vec);
 };
 
 #endif // MATRIX33F_H
