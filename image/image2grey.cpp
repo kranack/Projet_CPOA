@@ -8,7 +8,7 @@ Image2grey::Image2grey() :
 
 void Image2grey::saveToPGM(const std::string &fileName) const
 {
-    std::ofstream file(fileName, std::ios::out | std::ios::trunc);
+    std::ofstream file(fileName.c_str(), std::ios::out | std::ios::trunc);
 
     file << "P2" << std::endl;
     file << this->getWidth() << " " << this->getHeight() << std::endl;
@@ -28,7 +28,7 @@ void Image2grey::saveToPGM(const std::string &fileName) const
 
 void Image2grey::loadFromPGM(const std::string &fileName)
 {
-    std::ifstream file(fileName, std::ios::in);
+    std::ifstream file(fileName.c_str(), std::ios::in);
     if (!file.is_open()){
         std::cout << "Error while opening the file " << fileName << std::endl;
         return;
@@ -56,7 +56,7 @@ void Image2grey::loadFromPGM(const std::string &fileName)
         for (unsigned int x = 0; x < this->getWidth(); x++){
             unsigned int pixel;
             file >> pixel;
-            setPixel(x,y, pixel * 255 / maxValue);
+            this->setPixel(x,y, pixel * 255 / maxValue);
         }
     }
 
