@@ -14,6 +14,8 @@ public:
     Image2(T x, T y);
     T &getPixel(const T &x, const T &y) const;
     void setSize(const T &x, const T &y);
+    int getWidth() const;
+    int getHeight() const;
 };
 
 
@@ -52,4 +54,17 @@ void Image2<T>::setSize(const T &x, const T &y)
         this->m_buffer = NULL;
 }
 
+
+template<typename T>
+int Image2<T>::getWidth() const
+{
+    return this->m_size[0];
+}
+
+
+template<typename T>
+int Image2<T>::getHeight() const
+{
+    return this->m_size[1];
+}
 #endif // IMAGE2_H
